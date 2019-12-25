@@ -1,16 +1,25 @@
+<?php
+
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+use yii\helpers\Html;
+
+\app\assets\AppAsset::register($this);
+?>
+<?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>golden-retriever</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/media.css">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Bubblegum+Sans|Cabin|Caveat|Chewy&display=swap" rel="stylesheet">
+    <meta charset="<?= Yii::$app->charset ?>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php $this->registerCsrfMetaTags() ?>
+    <title><?= Html::encode($this->title) ?></title>
+    <?php $this->head() ?>
 </head>
 <body>
+<?php $this->beginBody() ?>
+
 <header class="header">
     <div class="container">
         <nav class="navbar fixed-top navbar-expand-xl navbar-light navbar-image">
@@ -18,6 +27,35 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+            <?php
+            NavBar::begin([
+                'options' => [
+                    'class' => 'navbar-inverse navbar-fixed-top',
+                ],
+            ]);
+            echo Nav::widget([
+                'options' => ['class' => 'navbar-nav navbar-right'],
+                'items' => [
+                    ['label' => 'Головна', 'url' => ['/site/main']],
+                    ['label' => ' Реєстрація', 'url' => ['/site/contact'], 'items' => [
+                        ['label' => 'Зареєструвати тварину', 'url' => ['/site/registration']],
+                        ['label' => 'Зареєструвати клініку', 'url' => ['/site/registration-clinic']],
+                        ['label' => 'Увійти для користувача', 'url' => ['/site/entrance-user']],
+                        ['label' => 'Увійти для пошуку донора', 'url' => ['/site/entrance']],
+                    ]],
+                    ['label' => ' Пошук донора', 'url' => ['/site/contact'], 'items' => [
+                        ['label' => 'Пошук', 'url' => ['/site/donor-search']],
+                    ]],
+                    ['label' => 'Трансфузія у тварин', 'url' => ['/site/transfusions']],
+                    ['label' => 'Часті запитання', 'url' => ['/site/questions']],
+                    ['label' => 'Зв’язатися з нами', 'url' => ['/site/contact-us']],
+                    ['label' => 'Підтримати проект', 'url' => ['/site/support-project']],
+                    ['label' => 'Книга відгуків', 'url' => ['/site/reviews-book']],
+
+                ],
+            ]);
+            NavBar::end(); ?>
+<!--
             <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="index.html">
@@ -50,18 +88,19 @@
                 </ul>
             </div>
         </nav>
+        -->
+
     </div>
 </header>
 
-<div class="parallax-window-registration" data-parallax="scroll" data-image-src="img/f7.jpg"></div>
+<div class="parallax-window-registration" data-parallax="scroll" data-image-src="/img/f7.jpg"></div>
+<div class="container">
+    <?=$content?>
+</div>
 
-<?=$content?>
 
-<script src="https://use.fontawesome.com/675ad26ce2.js"></script>
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/parallax.min.js"></script>
-<script src="js/main.js"></script>
+
+<?php $this->endBody() ?>
 </body>
 </html>
+<?php $this->endPage() ?>

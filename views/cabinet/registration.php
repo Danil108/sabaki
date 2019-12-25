@@ -1,4 +1,5 @@
 <!-- Форма регистрации -->
+
 <form action="#" class="form">
 
     <div class="container form-white">

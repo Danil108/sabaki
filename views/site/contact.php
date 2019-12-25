@@ -1,68 +1,89 @@
-<?php
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>golden-retriever</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/media.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Bubblegum+Sans|Cabin|Caveat|Chewy&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <nav class="navbar fixed-top navbar-expand-xl navbar-light navbar-image">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\ContactForm */
+            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">
+                            <i class="fa fa-home" aria-hidden="true"></i>Головна</a></li>
+                    <li class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i><img class="dog-img" src="img/dog.svg"> </i> Реєстрація
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="registration.html">Зареєструвати тварину</a>
+                            <a class="dropdown-item" href="registration-clinic.html"> Зареєструвати клініку</a>
 
-use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
-use yii\captcha\Captcha;
+                            <a class="dropdown-item" href="entrance-user.html">Увійти для користувача</a>
+                            <a class="dropdown-item" href="entrance.html">Увійти для пошуку донора</a>
 
-$this->title = 'Contact';
-$this->params['breadcrumbs'][] = $this->title;
-?>
-<div class="site-contact">
-    <h1><?= Html::encode($this->title) ?></h1>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-paw">Пошук донора</i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="donor-search.html">Пошук</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="transfusions.html">Трансфузія у тварин</a></li>
+                    <li class="nav-item"><a class="nav-link" href="questions.html">Часті запитання</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Зв’язатися з нами</a></li>
+                    <li class="nav-item"><a class="nav-link" href="support-project.html">Підтримати проект</a></li>
+                    <li class="nav-item"><a class="nav-link" href="reviews-book.html">Книга відгуків</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
 
-    <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
+<div class="parallax-window-registration" data-parallax="scroll" data-image-src="img/f7.jpg"></div>
 
-        <div class="alert alert-success">
-            Thank you for contacting us. We will respond to you as soon as possible.
-        </div>
-
-        <p>
-            Note that if you turn on the Yii debugger, you should be able
-            to view the mail message on the mail panel of the debugger.
-            <?php if (Yii::$app->mailer->useFileTransport): ?>
-                Because the application is in development mode, the email is not sent but saved as
-                a file under <code><?= Yii::getAlias(Yii::$app->mailer->fileTransportPath) ?></code>.
-                Please configure the <code>useFileTransport</code> property of the <code>mail</code>
-                application component to be false to enable email sending.
-            <?php endif; ?>
-        </p>
-
-    <?php else: ?>
-
-        <p>
-            If you have business inquiries or other questions, please fill out the following form to contact us.
-            Thank you.
-        </p>
-
+<!-- Форма регистрации -->
+<form action="#" class="form">
+    <div class="container form-white">
+        <div class="spacer"></div>
+        <h3 class="text-center text-Bubblegum">Зареєструвати клініку</h3>
         <div class="row">
-            <div class="col-lg-5">
-
-                <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
-
-                    <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
-
-                    <?= $form->field($model, 'email') ?>
-
-                    <?= $form->field($model, 'subject') ?>
-
-                    <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
-
-                    <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                        'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-                    ]) ?>
-
-                    <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
-                    </div>
-
-                <?php ActiveForm::end(); ?>
-
+            <div class="col-md-6">
+                <input type="name" required class="form-control" id="name" placeholder="Назва" >
+                <input type="email" required class="form-control" id="email"  placeholder="Електронна адреса">
+                <input type="number" required class="form-control" id="number" placeholder="Регістраційний державний номер">
+            </div>
+            <div class="col-md-6">
+                <input type="name" required class="form-control" id="name" placeholder="Контактний номер" >
+                <input type="number" required class="form-control" id="phone" placeholder="Контактна особа">
+                <input type="password" required class="form-control" id="userPassword"  placeholder="Пароль">
+            </div>
+            <div class="col-md-12  d-flex justify-content-center">
+                <button type="submit" class="btn btn-success w-50">Зареєструватись</button>
             </div>
         </div>
+    </div>
+</form>
 
-    <?php endif; ?>
-</div>
+<script src="https://use.fontawesome.com/675ad26ce2.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/parallax.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
